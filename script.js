@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtenemos referencias a los elementos del DOM
     const heartsContainer = document.getElementById('heartsContainer');
     const gavelsContainer = document.getElementById('gavelsContainer');
     const revealBtn = document.getElementById('revealBtn');
     const letterContainer = document.getElementById('letterContainer');
+    const celebrationMusic = document.getElementById('celebrationMusic');
     
-    // Función para crear corazones animados
     function createHearts(count) {
         const heartEmojis = ['❤️', '💖', '💕', '💗', '💓', '💞', '💝', '💘', '🌸', '✨'];
         
@@ -20,14 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             heartsContainer.appendChild(heart);
             
-            // Eliminar el corazón después de que termine la animación
             setTimeout(() => {
                 heart.remove();
             }, 4000);
         }
     }
     
-    // Función para crear martillos animados
     function createGavels(count) {
         for (let i = 0; i < count; i++) {
             const gavel = document.createElement('div');
@@ -40,33 +37,28 @@ document.addEventListener('DOMContentLoaded', function() {
             
             gavelsContainer.appendChild(gavel);
             
-            // Eliminar el martillo después de que termine la animación
             setTimeout(() => {
                 gavel.remove();
             }, 5000);
         }
     }
     
-    // Mostrar algunos corazones y martillos al inicio
     createHearts(15);
     createGavels(5);
     
-    // Evento para el botón de revelar
     revealBtn.addEventListener('click', function() {
-        // Ocultar botón con animación
         this.classList.remove('animate__pulse');
         this.classList.add('animate__zoomOut');
         
-        // Mostrar carta después de un breve retraso
+        celebrationMusic.play();
+        
         setTimeout(() => {
             this.style.display = 'none';
             letterContainer.style.display = 'block';
             
-            // Crear muchos corazones y martillos para celebrar
             createHearts(30);
             createGavels(10);
             
-            // Reproducir sonido de celebración
             const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3');
             audio.play();
         }, 500);
